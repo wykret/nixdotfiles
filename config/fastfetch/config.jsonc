@@ -54,6 +54,12 @@
             "type": "cpu",
             "showPeCoreCount": true
         },
+         {
+            "key": "│ {#33}󰍛 gpu     {#keys}│",
+            "type": "gpu",
+            "driverSpecific": true,
+            "temp": true
+        },
         {
             "key": "│ {#34}󰉉 disk    {#keys}│",
             "type": "disk",
