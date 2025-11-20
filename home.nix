@@ -22,6 +22,7 @@
   home.packages = [
     # # "Hello, world!" when run.
     # pkgs.hello
+    pkgs.steam
     pkgs.swaynotificationcenter
     pkgs.swaybg
     pkgs.grimblast
