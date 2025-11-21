@@ -113,10 +113,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  #programs.niri.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
-  niri
-  xwayland-satellite
+  #xwayland-satellite
   gh
   easyeffects
   fastfetch
