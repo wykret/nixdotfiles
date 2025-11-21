@@ -2,13 +2,21 @@
 
 	description = "Primeiro flake.";
 	inputs = {
-	  nixpkgs.url = "nixpkgs/nixos-25.05";
+	  nixpkgs.url = "nixpkgs/nixos-unstable";
 	   home-manager = {
-           url = "github:nix-community/home-manager/release-25.05";
-           inputs.nixpkgs.follows = "nixpkgs";
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
          };
-     	};
-	outputs = { self, nixpkgs, home-manager, ... }:
+      quickshell = {
+        url = "github:outfoxxed/quickshell";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+      noctalia = {
+        url = "github:noctalia-dev/noctalia-shell";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+  };
+	outputs = inputs@{ self, nixpkgs, home-manager, ... }:
 	let
 	   lib = nixpkgs.lib;
 	   system = "x86_64-linux";
@@ -17,7 +25,9 @@
 		nixosConfigurations = {
 			lucas-nixos = lib.nixosSystem{
 				inherit system;
+        specialArgs = { inherit inputs; };  # ← Adicione esta linha
 				modules = [ ./configuration.nix
+                    ./noctalia.nix
 				];
 			};
 		};

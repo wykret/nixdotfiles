@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 
 {
   imports =
@@ -47,6 +47,7 @@
   };
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.flatpak.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -82,6 +83,13 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+   programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      droidcam-obs
+    ];
+  };
 
   programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -107,6 +115,8 @@
   # $ nix search wget
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
+  niri
+  xwayland-satellite
   gh
   easyeffects
   fastfetch
