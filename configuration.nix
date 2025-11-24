@@ -80,8 +80,8 @@ programs.kdeconnect.enable = true;
   services.flatpak.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -114,11 +114,11 @@ programs.kdeconnect.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
    programs.obs-studio = {
-    enable = false;
-   # enableVirtualCamera = true;
-   # plugins = with pkgs.obs-studio-plugins; [
-   #   droidcam-obs
-   # ];
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      droidcam-obs
+    ];
+    enableVirtualCamera = true;
   };
 
   programs.zsh.enable = true;
@@ -172,11 +172,6 @@ environment.systemPackages = with pkgs; [
 	kitty
 	davinci-resolve
   pavucontrol
-   (wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
-        droidcam-obs             # <-- adicione este
-      ];
-    })
 #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
