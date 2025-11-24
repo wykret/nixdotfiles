@@ -11,9 +11,28 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader.systemd-boot.enable = false;
+  boot.loader = {
+  efi = {
+    canTouchEfiVariables = false;
+    #efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+  };
+  grub = {
+     enable = true;
+     efiInstallAsRemovable = true;
+     useOSProber = true;
+     efiSupport = true;
+     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+     device = "nodev";
+  };
+};
+networking.timeServers = [
+    "a.st1.ntp.br"
+    "b.st1.ntp.br"
+    "time.cloudflare.com"
+    "time.google.com"
+    "pool.ntp.org"
+  ];
   networking.hostName = "lucas-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -23,6 +42,17 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+    networking.firewall = { 
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+  };  
+programs.kdeconnect.enable = true;
+
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -84,11 +114,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
    programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      droidcam-obs
-    ];
+    enable = false;
+   # enableVirtualCamera = true;
+   # plugins = with pkgs.obs-studio-plugins; [
+   #   droidcam-obs
+   # ];
   };
 
   programs.zsh.enable = true;
@@ -110,6 +140,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+   nixpkgs.config.permittedInsecurePackages = [
+                "ventoy-gtk3-1.1.07"
+              ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -117,6 +150,16 @@
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  scrcpy
+  droidcam
+  btop
+  ffmpeg
+  mpv
+  popsicle
+  ntfs3g
+  ventoy-full-gtk
+  emacs
+  audacity
   gh
   easyeffects
   fastfetch
@@ -129,6 +172,11 @@ environment.systemPackages = with pkgs; [
 	kitty
 	davinci-resolve
   pavucontrol
+   (wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        droidcam-obs             # <-- adicione este
+      ];
+    })
 #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
@@ -141,8 +189,6 @@ environment.systemPackages = with pkgs; [
   # Example for /etc/nixos/configuration.nix
 services.syncthing = {
   user = "lucas";
-  dataDir = "/home/lucas/syncthing";
-  enable = true;
   openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
 };
  fonts.packages = with pkgs; [
