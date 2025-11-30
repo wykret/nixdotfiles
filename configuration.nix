@@ -53,8 +53,11 @@ networking.timeServers = [
   };  
 programs.kdeconnect.enable = true;
 
+#virt-manager
+virtualisation.libvirtd.enable = true;
+programs.virt-manager.enable = true;
 
-  # Set your time zone.
+# Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
   # Select internationalisation properties.
@@ -78,7 +81,7 @@ programs.kdeconnect.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.flatpak.enable = true;
-
+  systemd.services.flatpak-repo = {     wantedBy = [ "multi-user.target" ];     path = [ pkgs.flatpak ];     script = ''       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo     '';   };
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
@@ -127,7 +130,7 @@ programs.kdeconnect.enable = true;
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "Lucas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "libvirtd" "networkmanager" "wheel" ];
     packages = with pkgs; [
     	discord
 	fzf
@@ -150,6 +153,11 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  unzip
+  obsidian
+  gimp
+  nicotine-plus
+  qbittorrent
   scrcpy
   droidcam
   btop
