@@ -20,6 +20,8 @@
   home.packages = [
     # # "Hello, world!" when run.
     # pkgs.hello
+    pkgs.wine
+    pkgs.stremio
     pkgs.swaynotificationcenter
     pkgs.swaybg
     pkgs.grimblast
