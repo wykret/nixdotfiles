@@ -51,7 +51,6 @@ networking.timeServers = [
       { from = 1714; to = 1764; } # KDE Connect
     ];  
   };  
-programs.kdeconnect.enable = true;
 
 #virt-manager
 virtualisation.libvirtd.enable = true;
@@ -82,6 +81,7 @@ programs.virt-manager.enable = true;
   services.xserver.enable = true;
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {     wantedBy = [ "multi-user.target" ];     path = [ pkgs.flatpak ];     script = ''       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo     '';   };
+  services.ratbagd.enable = true;
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
@@ -123,7 +123,7 @@ programs.virt-manager.enable = true;
     ];
     enableVirtualCamera = true;
   };
-
+programs.kdeconnect.enable = true;
   programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lucas = {
@@ -132,7 +132,6 @@ programs.virt-manager.enable = true;
     description = "Lucas";
     extraGroups = [ "libvirtd" "networkmanager" "wheel" ];
     packages = with pkgs; [
-    	discord
 	fzf
     #  thunderbird
     ];
@@ -153,6 +152,13 @@ programs.virt-manager.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  piper
+  wdisplays
+  anki
+  heroic
+  lutris
+  wine
+  bottles
   unzip
   obsidian
   gimp
