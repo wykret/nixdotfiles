@@ -154,6 +154,8 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  telegram-desktop
+  vscodium
   appimage-run
   anydesk
   revolt-desktop
@@ -191,7 +193,7 @@ environment.systemPackages = with pkgs; [
   cmake
   git
 	neovim
-  syncthing
+  #syncthing
 	keepassxc
 	kitty
 	davinci-resolve
@@ -206,10 +208,10 @@ environment.systemPackages = with pkgs; [
 };
 
   # Example for /etc/nixos/configuration.nix
-services.syncthing = {
-  user = "lucas";
-  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-};
+#services.syncthing = {
+#  user = "lucas";
+#  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+#};
  fonts.packages = with pkgs; [
  nerd-fonts.jetbrains-mono
 ];
