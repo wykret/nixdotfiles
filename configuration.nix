@@ -78,14 +78,19 @@ programs.virt-manager.enable = true;
 	EDITOR = "nvim";
   };
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+     };
+   };
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {     wantedBy = [ "multi-user.target" ];     path = [ pkgs.flatpak ];     script = ''       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo     '';   };
   services.ratbagd.enable = true;
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
@@ -118,9 +123,6 @@ programs.virt-manager.enable = true;
   # services.xserver.libinput.enable = true;
    programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      droidcam-obs
-    ];
     enableVirtualCamera = true;
   };
 programs.kdeconnect.enable = true;
@@ -152,6 +154,14 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  appimage-run
+  anydesk
+  revolt-desktop
+  nwg-look
+  discord
+  ardour
+  spotify
+  libreoffice-qt
   piper
   wdisplays
   anki
