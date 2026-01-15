@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./uxplay.nix
     ];
 
   # Bootloader.
@@ -88,14 +89,23 @@ programs.virt-manager.enable = true;
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {     wantedBy = [ "multi-user.target" ];     path = [ pkgs.flatpak ];     script = ''       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo     '';   };
   services.ratbagd.enable = true;
+  hardware.opentabletdriver.enable = true;
+
+  # Required by OpenTabletDriver
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+#  services.displayManager.gdm.enable = true;
+#  services.desktopManager.gnome.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
     variant = "";
   };
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
 
   # Configure console keymap
   console.keyMap = "br-abnt2";
@@ -144,9 +154,6 @@ programs.kdeconnect.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-   nixpkgs.config.permittedInsecurePackages = [
-                "ventoy-gtk3-1.1.07"
-              ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -154,6 +161,9 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  uxplay
+  xournalpp
+  ferdium
   telegram-desktop
   vscodium
   appimage-run
@@ -183,7 +193,6 @@ environment.systemPackages = with pkgs; [
   mpv
   popsicle
   ntfs3g
-  ventoy-full-gtk
   emacs
   audacity
   gh
@@ -193,7 +202,7 @@ environment.systemPackages = with pkgs; [
   cmake
   git
 	neovim
-  #syncthing
+  syncthing
 	keepassxc
 	kitty
 	davinci-resolve
@@ -206,12 +215,11 @@ environment.systemPackages = with pkgs; [
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
-
   # Example for /etc/nixos/configuration.nix
-#services.syncthing = {
-#  user = "lucas";
-#  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-#};
+services.syncthing = {
+  user = "lucas";
+  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+};
  fonts.packages = with pkgs; [
  nerd-fonts.jetbrains-mono
 ];
