@@ -161,6 +161,7 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
+  niri
   uxplay
   xournalpp
   ferdium
