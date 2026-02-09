@@ -1,4 +1,8 @@
+exec_always --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 \
+                               --output HDMI-0 --auto --right-of DP-2
+
 set $mod Mod4
+
 
 font pango:monospace 8
 for_window [class="^.*"] border pixel 0
@@ -121,7 +125,11 @@ mode "resize" {
 
 bindsym $mod+Shift+s mode "resize"
 
+bindsym Print exec --no-startup-id flameshot gui
+bindsym Shift+Print exec --no-startup-id flameshot full -c
+
 bar {
-    status_command i3status
+    status_command i3blocks
+    position top
 }
 

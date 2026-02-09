@@ -149,7 +149,11 @@
 
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
-    wl-clipboard
+    feh
+    arandr
+    flameshot
+    xclip
+    xsel
     uxplay
     xournalpp
     ferdium
