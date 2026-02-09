@@ -149,7 +149,9 @@
 
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
+    lm_sensors
     feh
+    pulseaudio
     arandr
     flameshot
     xclip

@@ -1,25 +1,43 @@
-[volume]
-command=pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | awk '{print $5}'
+[WEATHER_SIGNALER]
+command=~/.config/i3blocks/weather/weather_signaler
+interval=once
+
+[WEATHER]
+command=~/.config/i3blocks/weather/weather_info.sh
+interval=300
+color=#FEC925
+signal=2
+
+[DISK]
+command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+interval=2
+color=#C9E3DB
+
+[BATTERY]
+command=~/.config/i3blocks/battery/battery_info.sh
+interval=3
+
+[CPU]
+full_text= CPU:  0.00% @ +00.0°C 
+command=~/.config/i3blocks/cpu/cpu_info.sh
+interval=repeat
+color=#00B4EB
+
+[MEM]
+command=free -h | awk '/Mem:/ { printf(" 🐏 %5s/%s \n", $3, $2) }'
 interval=1
-signal=10
+color=#FEC925
 
-[cpu]
-command=grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf "%.0f%%", usage}'
-interval=5
+[SOUND_BURST]
+command=~/.config/i3blocks/sound/sound_burst.sh
+interval=once
 
-[memory]
-command=free -h | awk '/Mem:/ {print $3 "/" $2}'
-interval=5
+[SOUND]
+full_text= 🔇:  0% 
+command=~/.config/i3blocks/sound/sound_info.sh
+interval=0
+signal=1
 
-[battery]
-command=cat /sys/class/power_supply/BAT0/capacity
-interval=30
-
-[network]
-command=ip route | grep default | awk '{print $5}'
-interval=10
-
-[time]
-command=date '+%H:%M %d/%m'
-interval=10
-
+[TIME_DATE]
+command=date +" %a, %d %b - %H:%M:%S"
+interval=1
