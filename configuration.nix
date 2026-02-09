@@ -97,6 +97,15 @@ programs.virt-manager.enable = true;
   # Enable the GNOME Desktop Environment.
 #  services.displayManager.gdm.enable = true;
 #  services.desktopManager.gnome.enable = true;
+   # Enables Gnome Keyring to store secrets for applications. 
+  services.gnome.gnome-keyring.enable = true;
+
+  # Enable Sway.
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
@@ -161,7 +170,7 @@ programs.kdeconnect.enable = true;
   programs.hyprland.enable = true;  
 environment.systemPackages = with pkgs; [
   #xwayland-satellite
-  niri
+  wl-clipboard
   uxplay
   xournalpp
   ferdium
