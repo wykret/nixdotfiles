@@ -150,6 +150,7 @@
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
     lm_sensors
+    sysstat
     feh
     pulseaudio
     arandr
