@@ -59,15 +59,13 @@
     EDITOR = "nvim";
   };
 
-  #################### X11 / WAYLAND ####################
+  #################### X11 ####################
   services.xserver = {
     enable = true;
     xkb.layout = "br";
     xkb.variant = "";
 
-    desktopManager = {
-      xterm.enable = false;
-    };
+    desktopManager.xterm.enable = false;
 
     windowManager.i3 = {
       enable = true;
@@ -81,12 +79,17 @@
     videoDrivers = [ "nvidia" ];
   };
 
+  #################### DISPLAY MANAGER ####################
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+
+  # Wayland (Plasma Wayland) — comentado pois você usa i3/X11
+  # services.displayManager.sddm.wayland.enable = true;
+
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasmax11";
 
-  programs.hyprland.enable = true;
+  # Wayland WM — exclusivo Wayland, desativado
+  # programs.hyprland.enable = true;
 
   #################### INPUT / HARDWARE ####################
   hardware.uinput.enable = true;
@@ -149,60 +152,82 @@
 
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
+
+    ### 🖥️ Sistema / Monitoramento
     lm_sensors
     sysstat
+    btop
+    fastfetch
+
+    ### 📦 Arquivos / Compressão
+    unzip
+    ntfs3g
+
+    ### 🧰 Dev / CLI
+    gcc
+    cmake
+    git
+    gh
+    neovim
+    emacs
+
+    ### 🖱️ X11 / Desktop / WM Utils
     feh
-    pulseaudio
     arandr
     flameshot
     xclip
     xsel
-    uxplay
-    xournalpp
-    ferdium
-    telegram-desktop
-    vscodium
-    appimage-run
-    anydesk
-    revolt-desktop
+    kitty
     nwg-look
-    discord
+    pavucontrol
+
+    ### 🔊 Áudio / Vídeo / Multimídia
+    pulseaudio
+    ffmpeg
+    mpv
+    easyeffects
+    audacity
     ardour
     spotify
-    libreoffice-qt
-    piper
-    wdisplays
-    anki
+
+    ### 🎮 Games / Wine / Launchers
+    steam
     heroic
     lutris
     wine
     bottles
-    unzip
-    obsidian
-    gimp
-    nicotine-plus
-    qbittorrent
+
+    ### 📱 Mobile / Casting
     scrcpy
     droidcam
-    btop
-    ffmpeg
-    mpv
-    popsicle
-    ntfs3g
-    emacs
-    audacity
-    gh
-    easyeffects
-    fastfetch
-    gcc
-    cmake
-    git
-    neovim
-    syncthing
+    uxplay
+
+    ### 💬 Comunicação / Social
+    discord
+    telegram-desktop
+    ferdium
+    revolt-desktop
+
+    ### 📝 Produtividade / Escrita / Notas
+    obsidian
+    libreoffice-qt
+    anki
     keepassxc
-    kitty
+    xournalpp
+
+    ### 🎨 Criativo / Design / Vídeo
+    gimp
     davinci-resolve
-    pavucontrol
+
+    ### 🌐 Internet / Downloads
+    qbittorrent
+    nicotine-plus
+
+    ### 🖥️ Outros
+    appimage-run
+    anydesk
+    popsicle
+    syncthing
   ];
 
   #################### SERVICES ####################
