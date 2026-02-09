@@ -1,68 +1,47 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./uxplay.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./uxplay.nix
+  ];
 
-  # Bootloader.
+  #################### BOOT ####################
   boot.loader.systemd-boot.enable = false;
   boot.loader = {
-  efi = {
-    canTouchEfiVariables = false;
-    #efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+    efi = {
+      canTouchEfiVariables = false;
+    };
+    grub = {
+      enable = true;
+      efiInstallAsRemovable = true;
+      useOSProber = true;
+      efiSupport = true;
+      device = "nodev";
+    };
   };
-  grub = {
-     enable = true;
-     efiInstallAsRemovable = true;
-     useOSProber = true;
-     efiSupport = true;
-     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-     device = "nodev";
-  };
-};
-networking.timeServers = [
+
+  #################### NETWORK ####################
+  networking.hostName = "lucas-nixos";
+  networking.networkmanager.enable = true;
+  networking.timeServers = [
     "a.st1.ntp.br"
     "b.st1.ntp.br"
     "time.cloudflare.com"
     "time.google.com"
     "pool.ntp.org"
   ];
-  networking.hostName = "lucas-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-    networking.firewall = { 
+  networking.firewall = {
     enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+    allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
+    allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
+  };
 
-#virt-manager
-virtualisation.libvirtd.enable = true;
-programs.virt-manager.enable = true;
-
-# Set your time zone.
+  #################### TIME / LOCALE ####################
   time.timeZone = "America/Sao_Paulo";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "pt_BR.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
     LC_IDENTIFICATION = "pt_BR.UTF-8";
@@ -75,54 +54,49 @@ programs.virt-manager.enable = true;
     LC_TIME = "pt_BR.UTF-8";
   };
 
+  #################### ENV ####################
   environment.variables = {
-	EDITOR = "nvim";
+    EDITOR = "nvim";
   };
-  # Enable the X11 windowing system.
+
+  #################### X11 / WAYLAND ####################
   services.xserver = {
     enable = true;
+    xkb.layout = "br";
+    xkb.variant = "";
+
     desktopManager = {
       xterm.enable = false;
-      xfce.enable = true;
-     };
-   };
-  services.flatpak.enable = true;
-  systemd.services.flatpak-repo = {     wantedBy = [ "multi-user.target" ];     path = [ pkgs.flatpak ];     script = ''       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo     '';   };
-  services.ratbagd.enable = true;
-  hardware.opentabletdriver.enable = true;
+    };
 
-  # Required by OpenTabletDriver
-  hardware.uinput.enable = true;
-  boot.kernelModules = [ "uinput" ];
-  # Enable the GNOME Desktop Environment.
-#  services.displayManager.gdm.enable = true;
-#  services.desktopManager.gnome.enable = true;
-   # Enables Gnome Keyring to store secrets for applications. 
-  services.gnome.gnome-keyring.enable = true;
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3blocks
+      ];
+    };
 
-  # Enable Sway.
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+    videoDrivers = [ "nvidia" ];
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "br";
-    variant = "";
-  };
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasmax11";
 
-  # Configure console keymap
-  console.keyMap = "br-abnt2";
+  programs.hyprland.enable = true;
 
-  # Enable CUPS to print documents.
+  #################### INPUT / HARDWARE ####################
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+  hardware.opentabletdriver.enable = true;
+  services.ratbagd.enable = true;
+
+  #################### PRINT / SOUND ####################
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -130,176 +104,133 @@ programs.virt-manager.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-   programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
+  #################### FLATPAK ####################
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    '';
   };
-programs.kdeconnect.enable = true;
+
+  #################### VIRTUALIZATION ####################
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  #################### USERS ####################
   programs.zsh.enable = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+
   users.users.lucas = {
-    shell = pkgs.zsh;
     isNormalUser = true;
     description = "Lucas";
-    extraGroups = [ "libvirtd" "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     packages = with pkgs; [
-	fzf
-    #  thunderbird
+      fzf
     ];
   };
 
-  # Install firefox.
+  #################### PROGRAMS ####################
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  #programs.niri.enable = true;
-  programs.hyprland.enable = true;  
-environment.systemPackages = with pkgs; [
-  #xwayland-satellite
-  wl-clipboard
-  uxplay
-  xournalpp
-  ferdium
-  telegram-desktop
-  vscodium
-  appimage-run
-  anydesk
-  revolt-desktop
-  nwg-look
-  discord
-  ardour
-  spotify
-  libreoffice-qt
-  piper
-  wdisplays
-  anki
-  heroic
-  lutris
-  wine
-  bottles
-  unzip
-  obsidian
-  gimp
-  nicotine-plus
-  qbittorrent
-  scrcpy
-  droidcam
-  btop
-  ffmpeg
-  mpv
-  popsicle
-  ntfs3g
-  emacs
-  audacity
-  gh
-  easyeffects
-  fastfetch
-  gcc
-  cmake
-  git
-	neovim
-  syncthing
-	keepassxc
-	kitty
-	davinci-resolve
-  pavucontrol
-#  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
-  programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-};
-  # Example for /etc/nixos/configuration.nix
-services.syncthing = {
-  user = "lucas";
-  openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-};
- fonts.packages = with pkgs; [
- nerd-fonts.jetbrains-mono
-];
-
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-   # Enable OpenGL
-  hardware.graphics = {
+  programs.obs-studio = {
     enable = true;
+    enableVirtualCamera = true;
+  };
+  programs.kdeconnect.enable = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  #################### PACKAGES ####################
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    uxplay
+    xournalpp
+    ferdium
+    telegram-desktop
+    vscodium
+    appimage-run
+    anydesk
+    revolt-desktop
+    nwg-look
+    discord
+    ardour
+    spotify
+    libreoffice-qt
+    piper
+    wdisplays
+    anki
+    heroic
+    lutris
+    wine
+    bottles
+    unzip
+    obsidian
+    gimp
+    nicotine-plus
+    qbittorrent
+    scrcpy
+    droidcam
+    btop
+    ffmpeg
+    mpv
+    popsicle
+    ntfs3g
+    emacs
+    audacity
+    gh
+    easyeffects
+    fastfetch
+    gcc
+    cmake
+    git
+    neovim
+    syncthing
+    keepassxc
+    kitty
+    davinci-resolve
+    pavucontrol
+  ];
+
+  #################### SERVICES ####################
+  services.syncthing = {
+    user = "lucas";
+    openDefaultPorts = true;
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+
+  #################### FONTS ####################
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
+  #################### NVIDIA ####################
+  hardware.opengl.enable = true;
 
   hardware.nvidia = {
-
-    # Modesetting is required.
     modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-    # of just the bare essentials.
     powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
     open = false;
-
-    # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
     nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  #################### VPN ####################
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
+  #################### NIX ####################
+  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
- 
+
+  system.stateVersion = "25.05";
 }
+
