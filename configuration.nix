@@ -172,6 +172,8 @@
     emacs
 
     ### 🖱️ X11 / Desktop / WM Utils
+    dunst
+    libnotify
     feh
     arandr
     flameshot

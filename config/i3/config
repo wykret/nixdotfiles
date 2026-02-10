@@ -1,22 +1,14 @@
-set $color0  #1f2a24   
-set $color1  #2e3f38   
-set $color2  #6b8f71   
-set $color5  #c9a24d   
-set $color7  #aebfb4   
-set $color8  #4f665c   
-set $color10 #7fa889   
-set $transp       #00000000
 
-client.focused          $color10 $color10 $color2  $color0  $color8
-client.focused_inactive $color2  $color8  $color1  $color0  $transp
-client.unfocused        $color8  $color8  $color7  $color0  $transp
-client.urgent           $color5  $color1  $color0  $color0  $transp
+# class                 border   backgr.  text     indicator  child_border
+client.focused          $color13 $color13 $color2  $color1    $color8
+client.focused_inactive $color13 $color8  $color1  $color1    $transp
+client.unfocused        $color8  $color8  $color7  $color1    $transp
+client.urgent           $color5  $color1  $color0  $color1    $transp
 client.background       $transp
-
 
 exec_always --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --output HDMI-0 --auto --right-of DP-2
 exec syncthing
-exec feh --bg-scale wallpapers/06.jpg
+exec feh --bg-scale ~/.dotfiles/wallpapers/06.jpg
 
 set $mod Mod4
 
@@ -46,7 +38,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+q kill
 
 # Launcher
-bindsym $mod+r exec --no-startup-id rofi -show drun
+bindsym $mod+r exec --no-startup-id rofi -show drun -show-icons
 
 # Focus
 bindsym $mod+h focus left
