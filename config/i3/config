@@ -136,7 +136,7 @@ mode "resize" {
 
 bindsym $mod+Shift+s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-bindsym Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png 
+bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 
 
 bar {
