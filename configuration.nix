@@ -172,6 +172,9 @@
     emacs
 
     ### 🖱️ X11 / Desktop / WM Utils
+    maim
+    slop
+    xkill
     dunst
     libnotify
     feh
