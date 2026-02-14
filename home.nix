@@ -46,6 +46,9 @@
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
+    home.file.".config/picom" = {
+      source = ./config/picom;
+    };
     home.file.".config/i3" = {
       source = ./config/i3;
     };
