@@ -1,6 +1,9 @@
 exec_always --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --output HDMI-0 --auto --right-of DP-2
-exec syncthing
 exec feh --bg-scale ~/.dotfiles/wallpapers/06.jpg
+exec picom --backend glx
+exec dunst
+exec syncthing
+exec ferdium
 
 set $mod Mod4
 

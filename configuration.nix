@@ -172,8 +172,10 @@
     emacs
 
     ### 🖱️ X11 / Desktop / WM Utils
+    picom
     maim
     slop
+    scrot
     xkill
     dunst
     libnotify
