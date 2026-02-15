@@ -1,9 +1,9 @@
 exec_always --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144 --output HDMI-0 --auto --right-of DP-2
-exec feh --bg-scale ~/.dotfiles/wallpapers/06.jpg
-exec picom --backend glx
-exec dunst
-exec syncthing
-exec ferdium
+exec_always --no-startup-id feh --bg-scale ~/.dotfiles/wallpapers/06.jpg
+exec_always --no-startup-id picom
+exec_always --no-startup-id dunst
+exec_always --no-startup-id syncthing
+exec_always --no-startup-id ferdium
 
 set $mod Mod4
 
@@ -21,7 +21,6 @@ client.unfocused        #333333 #222222 #888888 #292929   #222222
 gaps inner 10
 gaps outer 10
 smart_gaps on
-default_orientation horizontal
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -75,6 +74,8 @@ bindsym $mod+b split h
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
+default_orientation horizontal
+for_window [class=".*"] split toggle
 bindsym $mod+e layout toggle split
 
 # Floating
@@ -145,5 +146,6 @@ bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/pn
 bar {
     status_command i3blocks
     position top
+    tray_output DP-2
 }
 

@@ -20,15 +20,8 @@
   home.packages = [
     # # "Hello, world!" when run.
     # pkgs.hello
-    pkgs.swaynotificationcenter
-    pkgs.swaybg
-    pkgs.grimblast
     pkgs.rofi
-    pkgs.pywal16
     pkgs.cowsay
-    pkgs.waybar
-    pkgs.hyprpaper
-    pkgs.hyprlock
     pkgs.imagemagick
     #pkgs.ferdium
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -46,6 +39,9 @@
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
+    home.file.".config/dunst" = {
+      source = ./config/dunst;
+    };
     home.file.".config/picom" = {
       source = ./config/picom;
     };

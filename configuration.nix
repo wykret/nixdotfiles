@@ -190,6 +190,7 @@
 
     ### 🔊 Áudio / Vídeo / Multimídia
     pulseaudio
+    sxiv
     ffmpeg
     mpv
     easyeffects
