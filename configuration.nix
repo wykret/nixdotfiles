@@ -155,6 +155,7 @@
 
     ### 🖥️ Sistema / Monitoramento
     lm_sensors
+    acpi
     sysstat
     btop
     fastfetch
@@ -173,6 +174,7 @@
     jq
 
     ### 🖱️ X11 / Desktop / WM Utils
+    lxappearance
     picom
     maim
     slop
