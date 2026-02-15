@@ -170,6 +170,7 @@
     gh
     neovim
     emacs
+    jq
 
     ### 🖱️ X11 / Desktop / WM Utils
     picom
