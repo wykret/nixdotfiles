@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./uxplay.nix
   ];
 
   #################### BOOT ####################
@@ -255,7 +254,7 @@
   ];
 
   #################### NVIDIA ####################
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
