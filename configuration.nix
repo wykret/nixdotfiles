@@ -161,6 +161,8 @@
 
     ### 📦 Arquivos / Compressão
     unzip
+    unrar-free
+    7z
     ntfs3g
 
     ### 🧰 Dev / CLI
