@@ -1,4 +1,8 @@
+[TIME_DATE]
+command=date +" %a, %d %b - %H:%M:%S"
+interval=1
 # [WEATHER_SIGNALER]
+#
 # command=~/.config/i3blocks/weather/weather_signaler
 # interval=once
 # 
@@ -37,7 +41,3 @@ full_text= 🔇:  0%
 command=~/.config/i3blocks/sound/sound_info.sh
 interval=once
 signal=10
-
-[TIME_DATE]
-command=date +" %a, %d %b - %H:%M:%S"
-interval=1
