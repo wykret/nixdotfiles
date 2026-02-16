@@ -22,7 +22,7 @@ command=~/.config/i3blocks/battery/battery_info.sh
 interval=3
 
 [CPU]
-full_text= CPU:  0.00% @ +00.0°C 
+full_text= CPU: 0.00% @ +00.0°C 
 command=~/.config/i3blocks/cpu/cpu_info.sh
 interval=repeat
 color=#00B4EB
