@@ -1,4 +1,6 @@
 #!/bin/sh
-TEMP=$(sensors | grep 'Package id 0:\|Tdie' | grep ':[ ]*+[0-9]*.[0-9]*°C' -o | grep '+[0-9]*.[0-9]*°C' -o)
-CPU_USAGE=$(mpstat | awk '/ all / {print 100 - $NF}')
-echo "$CPU_USAGE $TEMP" | awk '{ printf(" CPU:%6s% @ %s \n"), $1, $2 }'
+
+TEMP=$(sensors | grep -E 'Package id 0:|Tdie' | grep -o '+[0-9]*\.[0-9]*°C' | head -n1)
+CPU_USAGE=$(LC_ALL=C mpstat 1 1 | awk 'END {printf "%.1f%%", 100 - $NF}')
+
+printf " CPU:%s @ %s\n" "$CPU_USAGE" "$TEMP"
