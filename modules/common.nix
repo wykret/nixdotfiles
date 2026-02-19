@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [];
 
   #################### BOOT ####################
   boot.loader.systemd-boot.enable = false;
@@ -21,7 +19,6 @@
   };
 
   #################### NETWORK ####################
-  networking.hostName = "lucas-nixos";
   networking.networkmanager.enable = true;
   networking.timeServers = [
     "a.st1.ntp.br"
@@ -229,16 +226,13 @@
 
     ### 🎨 Criativo / Design / Vídeo
     gimp
-    davinci-resolve
 
     ### 🌐 Internet / Downloads
     qbittorrent
-    nicotine-plus
 
     ### 🖥️ Outros
     appimage-run
     anydesk
-    popsicle
     syncthing
   ];
 
@@ -254,18 +248,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
-
-  #################### NVIDIA ####################
-  hardware.graphics.enable = true;
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
 
   #################### VPN ####################
   services.mullvad-vpn.enable = true;
