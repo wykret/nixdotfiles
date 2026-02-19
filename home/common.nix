@@ -40,38 +40,38 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
     home.file.".config/dunst" = {
-      source = ./config/dunst;
+      source = ../config/dunst;
     };
     home.file.".config/picom" = {
-      source = ./config/picom;
+      source = ../config/picom;
     };
     home.file.".config/i3" = {
-      source = ./config/i3;
+      source = ../config/i3;
     };
     home.file.".config/i3blocks" = {
-      source = ./config/i3blocks;
+      source = ../config/i3blocks;
     };
 
     home.file.".config/swaync" = {
-      source = ./config/swaync;
+      source = ../config/swaync;
     };
     home.file.".config/kitty" = {
-      source = ./config/kitty;
+      source = ../config/kitty;
     };
     home.file.".config/waybar" = {
-      source = ./config/waybar;
+      source = ../config/waybar;
     };
     home.file.".config/hypr" = {
-    source = ./config/hypr;
+    source = ../config/hypr;
   };
  #   home.file.".config/niri" = {
  #   source = ./config/niri;
  # };
     home.file.".config/fastfetch" = {
-    source = ./config/fastfetch;
+    source = ../config/fastfetch;
   };
     home.file."wallpapers" = {
-      source = ./wallpapers;
+      source = ../wallpapers;
     };
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a

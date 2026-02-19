@@ -159,7 +159,7 @@
     ### 📦 Arquivos / Compressão
     unzip
     unrar-free
-    7z
+    p7zip
     ntfs3g
 
     ### 🧰 Dev / CLI
