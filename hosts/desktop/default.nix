@@ -6,6 +6,20 @@
     ./hardware-configuration.nix
   ];
 
+  boot.loader.systemd-boot.enable = false;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = false;
+    };
+    grub = {
+      enable = true;
+      efiInstallAsRemovable = true;
+      useOSProber = true;
+      efiSupport = true;
+      device = "nodev";
+    };
+  };
+
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {

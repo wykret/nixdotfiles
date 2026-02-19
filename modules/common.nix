@@ -4,19 +4,6 @@
   imports = [];
 
   #################### BOOT ####################
-  boot.loader.systemd-boot.enable = false;
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = false;
-    };
-    grub = {
-      enable = true;
-      efiInstallAsRemovable = true;
-      useOSProber = true;
-      efiSupport = true;
-      device = "nodev";
-    };
-  };
 
   #################### NETWORK ####################
   networking.networkmanager.enable = true;
