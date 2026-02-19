@@ -71,8 +71,6 @@
         i3blocks
       ];
     };
-
-    videoDrivers = [ "nvidia" ];
   };
 
   #################### DISPLAY MANAGER ####################
