@@ -32,7 +32,7 @@
             home-manager.users.lucas = {
               imports = [
                 ./home/common.nix
-     #           ./home/desktop.nix
+                ./home/desktop.nix
               ];
             };
           }
@@ -53,7 +53,7 @@
             home-manager.users.lucas = {
               imports = [
                 ./home/common.nix
-                #./home/laptop.nix
+                ./home/laptop.nix
               ];
             };
           }
