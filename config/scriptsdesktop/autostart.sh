@@ -1,0 +1,3 @@
+mullvad-gui
+syncthing
+ferdium
