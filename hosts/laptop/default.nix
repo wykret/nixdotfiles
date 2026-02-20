@@ -5,7 +5,7 @@
     ../../modules/common.nix
     ./hardware-configuration.nix
   ];
-
+  hardware.bluetooth.enable = true;
   boot.loader = {
     grub = {
       enable = true;

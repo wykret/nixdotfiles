@@ -2,6 +2,8 @@
 
 {
   home.packages = with pkgs; [
+    blueman
+    networkmanagerapplet
     powertop
     brightnessctl
   ];

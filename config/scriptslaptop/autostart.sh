@@ -1,4 +1,6 @@
-mullvad-gui
-syncthing
-ferdium
-libinput-gestures
+mullvad-gui &
+syncthing &
+ferdium &
+libinput-gestures &
+blueman-applet &
+nm-applet &
