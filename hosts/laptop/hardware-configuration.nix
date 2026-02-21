@@ -20,11 +20,14 @@
 
   boot.initrd.luks.devices."luks-116e5a4e-ddb7-4284-a6a0-d99e0e5159a2".device = "/dev/disk/by-uuid/116e5a4e-ddb7-4284-a6a0-d99e0e5159a2";
 
-  fileSystems."/home/lucas/hdzao" =
-    { device = "/dev/disk/by-uuid/adcc8b45-1ae2-4ce3-8ced-54f97df63a55";
-      fsType = "ext4";
-    };
+boot.initrd.luks.devices."crypt-home" = {
+  device = "/dev/disk/by-uuid/574359cf-1164-466d-9180-6d2af33a88e9";
+};
 
+fileSystems."/home" = {
+  device = "/dev/mapper/crypt-home";
+  fsType = "ext4";
+};
   swapDevices =
     [ { device = "/dev/mapper/luks-2fd5c54f-4fb5-42de-b05e-cf759e15018a"; }
     ];
