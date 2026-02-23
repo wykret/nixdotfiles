@@ -1,97 +1,178 @@
-set $rosewater #f5e0dc
-set $flamingo #f2cdcd
-set $pink #f5c2e7
-set $mauve #cba6f7
-set $red #f38ba8
-set $maroon #eba0ac
-set $peach #fab387
-set $yellow #f9e2af
-set $green #a6e3a1
-set $teal #94e2d5
-set $sky #89dceb
-set $sapphire #74c7ec
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $subtext1 #bac2de
-set $subtext0 #a6adc8
-set $overlay2 #9399b2
-set $overlay1 #7f849c
-set $overlay0 #6c7086
-set $surface2 #585b70
-set $surface1 #45475a
-set $surface0 #313244
-set $base #1e1e2e
-set $mantle #181825
-set $crust #11111b
+### --- AUTOSTART ---
 
-# Autoexec
+output eDP-1 {
+    mode 1366x768@60Hz
+    position 0 0
+    scale 1
+}
+# Wallpaper (substitui feh)
+exec_always swaybg -i ~/.dotfiles/wallpapers/06.jpg -m fill
 
-client.focused           $lavender $mantle $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $mantle $text  $rosewater $overlay0
-client.unfocused         $overlay0 $mantle $text  $rosewater $overlay0
-client.urgent            $peach    $mantle $peach $overlay0  $peach
-client.placeholder       $overlay0 $mantle $text  $overlay0  $overlay0
-client.background        $mantle
+# Picom REMOVIDO (Sway já é compositor)
 
-exec --no-startup-id $HOME/.config/sway/bg
-exec --no-startup-id waybar
+# Dunst pode funcionar via XWayland, mas mantive:
+exec_always dunst
 
-# Keybinds
+exec ~/.config/scripts/autostart.sh
 
 set $mod Mod4
 
-bindsym $mod+Return exec kitty
-bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show drun
-bindsym $mod+Shift+space floating toggle
+font pango:monospace 8
 
-floating_modifier $mod normal
+for_window [app_id=".*"] border pixel 2
+default_border pixel 1
+hide_edge_borders smart
+
+# class/app_id adaptado para sway
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.unfocused        #333333 #222222 #888888 #292929   #222222
+
+gaps inner 10
+gaps outer 10
+smart_gaps on
+
+# dex ambiente sway
+exec dex --autostart --environment sway
+
+# Substitui xss-lock + i3lock
+exec swayidle -w \
+ timeout 600 'swaylock -f -c 000000' \
+ timeout 900 'swaymsg "output * dpms off"' \
+ resume 'swaymsg "output * dpms on"' \
+ before-sleep 'swaylock -f -c 000000'
+
+exec nm-applet
+
+# Atualização de status (se continuar com i3blocks)
+set $refresh_i3status killall -SIGUSR1 i3blocks
+
+# Volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Brilho
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+b exec firefox
+
+# Lock adaptado
+bindsym $mod+u exec swaylock -c 000000
+
+bindsym $mod+q kill
+
+# Launcher (rofi mantido)
+bindsym $mod+r exec rofi -show drun -show-icons
+
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Splits
+bindsym $mod+v split v
+bindsym $mod+b split h
+
+# Layout
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+default_orientation horizontal
+bindsym $mod+e layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+# Substitui i3-nagbar
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'"
 
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym $mod+Shift+x exec ~/.config/i3/scripts/powermenu.sh
 
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px
+    bindsym j resize grow height 10 px
+    bindsym k resize shrink height 10 px
+    bindsym l resize grow width 10 px
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -e4 -n2 set 5%+
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -e4 -n2 set 5%-
-bindsym XF86KbdBrightnessUp exec --no-startup-id brightnessctl --device='spi::kbd_backlight' set 20%+
-bindsym XF86KbdBrightnessDown exec --no-startup-id brightnessctl --device='spi::kbd_backlight' set 20%-
+    bindsym Left resize shrink width 10 px
+    bindsym Down resize grow height 10 px
+    bindsym Up resize shrink height 10 px
+    bindsym Right resize grow width 10 px
 
-# General
-
-#output eDP-1 mode 2560x1600 scale 1.85
-
-default_border pixel 2
-gaps inner 4
-gaps outer 6
-
-input * {
-    xkb_layout br,ru
-    #xkb_options grp:caps_toggle
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
+# Screenshots (Wayland)
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym Print exec grim ~/Pictures/screenshot.png
+bindsym Shift+Print exec grim - | wl-copy
+
+bar {
+    status_command i3blocks
+    position top
+    tray_output primary
+}

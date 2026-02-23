@@ -143,6 +143,7 @@
 
     ### 📦 Arquivos / Compressão
     unzip
+    persepolis
     unrar-free
     p7zip
     ntfs3g
@@ -157,7 +158,10 @@
     jq
 
     ### 🖱️ X11 / Desktop / WM Utils
+    wl-clipboard
+    mako
     lxappearance
+    lxrandr
     picom
     maim
     slop
@@ -232,6 +236,8 @@
   #################### FONTS ####################
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
   ];
 
   #################### VPN ####################

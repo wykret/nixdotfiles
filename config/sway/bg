@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-BG_PATH=$HOME/Pictures/wallpapers/mountain.png
-swaybg -o "*" -i $BG_PATH -m fill
