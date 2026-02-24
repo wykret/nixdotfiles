@@ -1,6 +1,10 @@
+@import url("/home/lucas/.cache/wal/colors-waybar.css");
+
 * {
     font-family: "JetBrains Mono";
+    font-size: 10px;
     font-weight: 600;
+    color: @foreground;
 }
 
 .module {
@@ -8,37 +12,33 @@
     padding-right: 8px;
 }
 
-#custom-gentoo {
-    padding-left: 10px;
-}
-
 window#waybar {
-    background-color: #181825;
-    border: 2px solid #b4befe;
+    background-color: @background;
+    border: 2px solid @color4;
     padding-left: 6px;
 }
 
 #battery.warning {
-    border: 2px solid #f9e2af;
+    border: 2px solid @color3;
 }
 
 #battery.critical {
-    border: 2px solid #f38ba8;
+    border: 2px solid @color1;
 }
 
 #network.ethernet {
-    background-color: #b4befe;
+    background-color: @color4;
 }
 
 #workspaces {
-    border: 2px solid #b4befe;
+    border: 2px solid @color4;
     padding-left: 0;
     padding-right: 0;
 }
 
 #workspaces button {
     border-radius: 0;
-    color: #cdd6f4;
+    color: @foreground;
     padding-left: 8px;
     padding-right: 7px;
 }

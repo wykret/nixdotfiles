@@ -1,21 +1,22 @@
 {
-    "height": 40,
-    "margin-top": 10,
-    "margin-left": 10,
-    "margin-right": 10,
+    "height": 20,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
 
-    "modules-left": ["custom/gentoo", "sway/workspaces", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/window"],
     "modules-center": ["clock"],
     "modules-right": ["backlight", "pulseaudio", "battery", "network", "sway/language", "tray"],
 
-    "sway/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "focused": "󱓻",
-            "default": "󱓼"
-        }
-    },
-
+   "sway/workspaces": {
+          "disable-scroll": false,
+          "format": "{icon}{name}",
+          "format-icons": {
+              "default": " ",
+              "urgent": "!",
+              "focused": "*"
+          }
+      },
     "sway/window": {
         "rewrite": {
             "": "sway"
@@ -25,13 +26,9 @@
     "backlight": {
         "format": "{icon} {percent}%",
         "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "reverse-scrolling": true
+        "reverse-scrolling": false
     },
 
-    "custom/gentoo": {
-        "format": "󰣨 Gentoo",
-        "tooltip-format": "Am I a masochist? Yes!"
-    },
 
     "network": {
         "format-ethernet": "󰈀",
@@ -53,7 +50,7 @@
         "format-icons": ["󰖀", "󰕾"],
         "format": "{icon} {volume}%",
         "format-muted": "󰖁",
-        "reverse-scrolling": true
+        "reverse-scrolling": false
     },
 
     "battery": {

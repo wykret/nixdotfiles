@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     blueman
+    waybar
     swaybg
     swaynotificationcenter
     networkmanagerapplet

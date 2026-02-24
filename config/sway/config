@@ -5,13 +5,25 @@ output eDP-1 {
     position 0 0
     scale 1
 }
+input type:touchpad {
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+    middle_emulation enabled
+}
+input type:keyboard {
+    xkb_layout br
+    xkb_variant abnt2
+}
+exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Wallpaper (substitui feh)
-exec_always swaybg -i ~/.dotfiles/wallpapers/06.jpg -m fill
+exec_always swaybg -i ~/.dotfiles/wallpapers/09.png -m fill
 
 # Picom REMOVIDO (Sway já é compositor)
 
 # Dunst pode funcionar via XWayland, mas mantive:
-exec_always dunst
+exec_always swaync
 
 exec ~/.config/scripts/autostart.sh
 
@@ -57,8 +69,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 floating_modifier $mod
-tiling_drag modifier titlebar
 
+bindsym $mod+n exec swaync-client --toggle-panel
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+b exec firefox
 
@@ -172,7 +184,6 @@ bindsym Print exec grim ~/Pictures/screenshot.png
 bindsym Shift+Print exec grim - | wl-copy
 
 bar {
-    status_command i3blocks
-    position top
-    tray_output primary
+    swaybar_command waybar
 }
+

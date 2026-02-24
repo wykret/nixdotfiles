@@ -66,8 +66,8 @@
   # Wayland (Plasma Wayland) — comentado pois você usa i3/X11
   # services.displayManager.sddm.wayland.enable = true;
 
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "plasmax11";
+  #services.desktopManager.plasma6.enable = true;
+  #services.displayManager.defaultSession = "plasmax11";
 
   # Wayland WM — exclusivo Wayland, desativado
   # programs.hyprland.enable = true;
@@ -166,6 +166,7 @@
     maim
     slop
     scrot
+    slurp
     xkill
     dunst
     libnotify
@@ -220,9 +221,15 @@
     qbittorrent
 
     ### 🖥️ Outros
+    pywal16
     appimage-run
     anydesk
     syncthing
+
+
+    #Themes
+    adapta-gtk-theme
+    fluent-gtk-theme
   ];
 
   #################### SERVICES ####################
