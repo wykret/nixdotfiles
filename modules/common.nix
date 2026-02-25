@@ -60,8 +60,6 @@
     };
   };
 
-  #################### DISPLAY MANAGER ####################
-  services.displayManager.sddm.enable = true;
 
   # Wayland (Plasma Wayland) — comentado pois você usa i3/X11
   # services.displayManager.sddm.wayland.enable = true;

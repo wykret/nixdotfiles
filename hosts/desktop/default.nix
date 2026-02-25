@@ -5,6 +5,8 @@
     ../../modules/common.nix
     ./hardware-configuration.nix
   ];
+  #################### DISPLAY MANAGER ####################
+  services.displayManager.sddm.enable = true;
 
   boot.loader.systemd-boot.enable = false;
   boot.loader = {

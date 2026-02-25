@@ -1,33 +1,80 @@
 { config, pkgs, ... }:
 
+let
+  swayConfig = pkgs.writeText "greetd-sway-config" ''
+    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+    bindsym Mod4+shift+e exec swaynag \
+      -t warning \
+      -m 'What do you want to do?' \
+      -b 'Poweroff' 'systemctl poweroff' \
+      -b 'Reboot' 'systemctl reboot'
+  '';
+in
 {
   imports = [
     ../../modules/common.nix
     ./hardware-configuration.nix
   ];
+
+      services.greetd = {
+        enable = true;
+        settings = rec {
+          initial_session = {
+            command = "${pkgs.sway}/bin/sway";
+            user = "lucas";
+          };
+          default_session = initial_session;
+        };
+      };
+
+
+  environment.etc."greetd/environments".text = ''
+    sway
+    fish
+    bash
+    startxfce4
+  '';
+
   hardware.bluetooth.enable = true;
+
   xdg.portal = {
-  enable = true;
-  wlr.enable = true;
-  xdgOpenUsePortal = true;
-};
-  boot.loader = {
-    grub = {
-      enable = true;
-      device = "/dev/sdb"; # ajuste se for nvme
-      useOSProber = true;
-    };
-  };
-  # Enable Sway.
-  programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
   };
+
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "rings";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "rings" ];
+        })
+      ];
+    };
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "systemd.show_status=auto"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
+
   networking.hostName = "lucas-laptop";
+
   users.users.lucas.extraGroups = [ "input" ];
+
   environment.systemPackages = with pkgs; [
-  libinput-gestures
-];
-
+    libinput-gestures
+    swayfx
+    waypaper
+  ];
 }
-

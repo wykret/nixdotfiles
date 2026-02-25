@@ -18,7 +18,7 @@ input type:keyboard {
 exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Wallpaper (substitui feh)
-exec_always swaybg -i ~/.dotfiles/wallpapers/09.png -m fill
+exec_always swaybg -i ~/.dotfiles/wallpapers/05.jpg -m fill
 
 # Picom REMOVIDO (Sway já é compositor)
 
@@ -35,13 +35,17 @@ for_window [app_id=".*"] border pixel 2
 default_border pixel 1
 hide_edge_borders smart
 
+
 # class/app_id adaptado para sway
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused  #2f4f3f #1f3a2e #e6f2ec #6ecf8b #1f3a2e
 client.unfocused        #333333 #222222 #888888 #292929   #222222
 
-gaps inner 10
-gaps outer 10
+gaps inner 5
 smart_gaps on
+blur_passes 4
+blur_radius 4
+corner_radius 5
+default_dim_inactive 0.3
 
 # dex ambiente sway
 exec dex --autostart --environment sway

@@ -4,9 +4,17 @@
     "margin-left": 0,
     "margin-right": 0,
 
-    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-left": ["sway/workspaces",
+      "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["backlight", "pulseaudio", "battery", "network", "sway/language", "tray"],
+    "modules-right": ["backlight",
+      "pulseaudio", 
+      "battery",
+      "disk#root",
+      "disk#home", 
+      //"network",
+      "sway/language",
+      "tray"],
 
    "sway/workspaces": {
           "disable-scroll": false,
@@ -58,5 +66,19 @@
         "format-charging": "󰂄 {capacity}%",
         "format": "{icon} {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁿", "󰂀", "󰂂", "󰁹"]
-    }
+    },
+    
+     "disk#root": {
+        "path": "/",
+        "interval": 30,
+        "format": "  {used}/{total}",
+        "tooltip-format": "Mount: /\nUsed: {used}\nFree: {free}\nTotal: {total}\nUsage: {percentage}%"
+      },
+
+      "disk#home": {
+        "path": "/home",
+        "interval": 30,
+        "format": "  {used}/{total}",
+        "tooltip-format": "Mount: /home\nUsed: {used}\nFree: {free}\nTotal: {total}\nUsage: {percentage}%"
+      }
 }
