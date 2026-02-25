@@ -42,8 +42,14 @@ in
     wlr.enable = true;
     xdgOpenUsePortal = true;
   };
+    boot = {
+      loader = {
+        grub = {
+          enable = true;
+          device = "/dev/sdb";
+        };
+      };
 
-  boot = {
     plymouth = {
       enable = true;
       theme = "rings";
