@@ -20,7 +20,7 @@ in
         enable = true;
         settings = rec {
           initial_session = {
-            command = "${pkgs.sway}/bin/sway";
+            command = "${pkgs.swayfx}/bin/sway";
             user = "lucas";
           };
           default_session = initial_session;
@@ -30,19 +30,21 @@ in
 
   environment.etc."greetd/environments".text = ''
     sway
-    fish
-    bash
-    startxfce4
   '';
 
   hardware.bluetooth.enable = true;
-
+  security.pam.services.swaylock = {};
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     xdgOpenUsePortal = true;
   };
     boot = {
+    initrd =
+    {
+      systemd.enable = true;
+      kernelModules = [ "i915" ];
+      };
       loader = {
         grub = {
           enable = true;
