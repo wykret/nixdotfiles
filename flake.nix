@@ -2,7 +2,7 @@
   description = "Lucas NixOS config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
