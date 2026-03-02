@@ -26,18 +26,44 @@ in
           default_session = initial_session;
         };
       };
-
-
+services.logind.settings.Login = {
+  HandleLidSwitch = "ignore";
+  HandleLidSwitchDocked = "ignore";
+  HandleLidSwitchExternalPower = "ignore";
+};
   environment.etc."greetd/environments".text = ''
     sway
   '';
 
+ environment.variables = {
+
+    # Force Qt to use Wayland backend
+    QT_QPA_PLATFORM = "wayland";
+
+    # Use KDE platform theme (better Qt integration)
+    QT_QPA_PLATFORMTHEME = "kde";
+
+    # Use Kvantum as Qt style engine
+    QT_STYLE_OVERRIDE = "kvantum";
+
+    # Avoid double window decorations on Wayland
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+  };
   hardware.bluetooth.enable = true;
   security.pam.services.swaylock = {};
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    xdgOpenUsePortal = true;
+    ############################################
+  # Wayland portal configuration for Sway
+  ############################################
+  xdg.portal.enable = true;
+
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-wlr
+  ];
+
+  xdg.portal.config = {
+    common = {
+      default = "wlr";
+    };
   };
     boot = {
     initrd =
@@ -83,6 +109,8 @@ in
   environment.systemPackages = with pkgs; [
     libinput-gestures
     swayfx
+    swayidle
     waypaper
+    nautilus
   ];
 }

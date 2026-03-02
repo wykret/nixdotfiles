@@ -4,3 +4,4 @@ ferdium &
 libinput-gestures &
 blueman-applet &
 nm-applet &
+qbittorrent &
