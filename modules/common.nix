@@ -223,7 +223,7 @@
     ### 🎮 Games / Wine / Launchers
     pcsx2
     hydralauncher
-    citra
+    azahar
     melonds
     steam
     heroic
