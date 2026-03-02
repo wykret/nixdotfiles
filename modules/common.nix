@@ -43,6 +43,7 @@
   };
 
   #################### X11 ####################
+
   services.xserver = {
     enable = true;
     xkb.layout = "br";
@@ -155,6 +156,36 @@
     emacs
     jq
 
+    # File manager
+  kdePackages.dolphin
+
+    ##########################################
+    # Qt6 Breeze theme
+    ##########################################
+    kdePackages.breeze
+
+    ##########################################
+    # Kvantum for Qt6
+    ##########################################
+    kdePackages.qtstyleplugin-kvantum
+
+    ##########################################
+    # Kvantum themes
+    ##########################################
+    nordic
+    sweet
+    dracula-theme
+    catppuccin-kvantum
+    # GVFS + Android MTP support
+    gvfs
+
+    # iPhone AFC support
+    libimobiledevice
+    ifuse
+
+    # Automount daemon for Wayland
+    udiskie
+
     ### 🖱️ X11 / Desktop / WM Utils
     wl-clipboard
     mako
@@ -164,6 +195,7 @@
     maim
     slop
     scrot
+    grim
     slurp
     xkill
     dunst
@@ -175,6 +207,7 @@
     xsel
     kitty
     nwg-look
+    qt6Packages.qt6ct
     pavucontrol
 
     ### 🔊 Áudio / Vídeo / Multimídia
@@ -188,6 +221,10 @@
     spotify
 
     ### 🎮 Games / Wine / Launchers
+    pcsx2
+    hydralauncher
+    citra
+    melonds
     steam
     heroic
     lutris
@@ -200,7 +237,9 @@
     uxplay
 
     ### 💬 Comunicação / Social
-    discord
+    #discord
+    #vesktop
+    arrpc
     telegram-desktop
     ferdium
     revolt-desktop
@@ -244,6 +283,25 @@
     noto-fonts
     noto-fonts-cjk-sans
   ];
+    ############################################
+  # Enable D-Bus (required for GVFS to work)
+  ############################################
+  services.dbus.enable = true;
+
+  ############################################
+  # Enable udisks2 (handles disk mounting)
+  ############################################
+  services.udisks2.enable = true;
+
+  ############################################
+  # Enable GVFS (backend for Nautilus mounts)
+  ############################################
+  services.gvfs.enable = true;
+
+  ############################################
+  # Enable usbmuxd (required for iPhone support)
+  ############################################
+  services.usbmuxd.enable = true;
 
   #################### VPN ####################
   services.mullvad-vpn.enable = true;
@@ -251,6 +309,7 @@
 
   #################### NIX ####################
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.05";
