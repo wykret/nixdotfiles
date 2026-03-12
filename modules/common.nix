@@ -20,6 +20,8 @@
     allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
     allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
   };
+  networking.resolvconf.enable = false;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
   #################### TIME / LOCALE ####################
   time.timeZone = "America/Sao_Paulo";
@@ -133,6 +135,9 @@
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
 
+    ###browsers
+    mullvad-browser
+
     ### 🖥️ Sistema / Monitoramento
     lm_sensors
     acpi
@@ -143,8 +148,9 @@
     ### 📦 Arquivos / Compressão
     unzip
     persepolis
-    unrar-free
+    unrar
     p7zip
+    file
     ntfs3g
 
     ### 🧰 Dev / CLI
@@ -222,14 +228,18 @@
 
     ### 🎮 Games / Wine / Launchers
     pcsx2
+    mangohud
+    gamemode
     hydralauncher
     azahar
-    melonds
+    melonDS
     steam
     heroic
     lutris
     wine
+    winetricks
     bottles
+    protonup-qt
 
     ### 📱 Mobile / Casting
     scrcpy
@@ -240,13 +250,14 @@
     #discord
     #vesktop
     arrpc
-    telegram-desktop
+    #telegram-desktop
     ferdium
     revolt-desktop
 
     ### 📝 Produtividade / Escrita / Notas
-    obsidian
     libreoffice-qt
+    teams-for-linux
+    obsidian
     anki
     keepassxc
     xournalpp

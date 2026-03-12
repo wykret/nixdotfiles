@@ -107,6 +107,7 @@ services.logind.settings.Login = {
   users.users.lucas.extraGroups = [ "input" ];
 
   environment.systemPackages = with pkgs; [
+    ppsspp-sdl-wayland
     libinput-gestures
     swayfx
     swayidle

@@ -8,28 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
+fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/22708146-66e4-41e2-ae4c-39a1d6b8baa8";
+      fsType = "ext4";
+    };
+boot.initrd.luks.devices."luks-0e714a04-6ed7-45e4-867d-94baa254c6a7".device = "/dev/disk/by-uuid/0e714a04-6ed7-45e4-867d-94baa254c6a7";
+boot.initrd.luks.devices."home".device = "/dev/disk/by-uuid/574359cf-1164-466d-9180-6d2af33a88e9";	
   fileSystems."/" =
-    { device = "/dev/mapper/luks-116e5a4e-ddb7-4284-a6a0-d99e0e5159a2";
+    { device = "/dev/mapper/luks-0e714a04-6ed7-45e4-867d-94baa254c6a7";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-116e5a4e-ddb7-4284-a6a0-d99e0e5159a2".device = "/dev/disk/by-uuid/116e5a4e-ddb7-4284-a6a0-d99e0e5159a2";
-
-boot.initrd.luks.devices."crypt-home" = {
-  device = "/dev/disk/by-uuid/574359cf-1164-466d-9180-6d2af33a88e9";
+    fileSystems."/home" = {
+  device = "/dev/mapper/home";  # Nome do dispositivo desbloqueado
+  fsType = "ext4";              # Tipo de sistema de arquivos (se for ext4, por exemplo)
 };
-
-fileSystems."/home" = {
-  device = "/dev/mapper/crypt-home";
-  fsType = "ext4";
-};
-  swapDevices =
-    [ { device = "/dev/mapper/luks-2fd5c54f-4fb5-42de-b05e-cf759e15018a"; }
+    swapDevices =
+    [ { device = "/dev/disk/by-uuid/b8dee12b-d8fe-466c-960d-53df66e31ff5"; }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
