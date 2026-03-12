@@ -18,7 +18,7 @@ input type:keyboard {
 exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Wallpaper (substitui feh)
-exec_always swaybg -i ~/.dotfiles/wallpapers/13.jpg -m fill
+exec_always swaybg -i ~/.dotfiles/wallpapers/14.jpg -m fill
 exec_always --no-startup-id udiskie
 
 # Picom REMOVIDO (Sway já é compositor)
