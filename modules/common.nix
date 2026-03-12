@@ -138,14 +138,14 @@
     ###browsers
     mullvad-browser
 
-    ### 🖥️ Sistema / Monitoramento
+    ### 🖥️ system
     lm_sensors
     acpi
     sysstat
     btop
     fastfetch
 
-    ### 📦 Arquivos / Compressão
+    ### files/compression
     unzip
     persepolis
     unrar
@@ -153,7 +153,7 @@
     file
     ntfs3g
 
-    ### 🧰 Dev / CLI
+    ### dev
     gcc
     cmake
     git
@@ -161,8 +161,9 @@
     neovim
     emacs
     jq
+    vscodium
 
-    # File manager
+    # file manager
   kdePackages.dolphin
 
     ##########################################
@@ -194,6 +195,7 @@
 
     ### 🖱️ X11 / Desktop / WM Utils
     wl-clipboard
+    wdisplays
     mako
     lxappearance
     lxrandr
@@ -216,7 +218,7 @@
     qt6Packages.qt6ct
     pavucontrol
 
-    ### 🔊 Áudio / Vídeo / Multimídia
+    ### audio / video / multimedia
     pulseaudio
     sxiv
     ffmpeg
@@ -226,7 +228,7 @@
     ardour
     spotify
 
-    ### 🎮 Games / Wine / Launchers
+    ### games / wine / launchers
     pcsx2
     mangohud
     gamemode
@@ -241,12 +243,12 @@
     bottles
     protonup-qt
 
-    ### 📱 Mobile / Casting
+    ###  mobile / casting
     scrcpy
     droidcam
     uxplay
 
-    ### 💬 Comunicação / Social
+    ### social
     #discord
     #vesktop
     arrpc
@@ -254,7 +256,7 @@
     ferdium
     revolt-desktop
 
-    ### 📝 Produtividade / Escrita / Notas
+    ### productivity/notes
     libreoffice-qt
     teams-for-linux
     obsidian
@@ -262,20 +264,20 @@
     keepassxc
     xournalpp
 
-    ### 🎨 Criativo / Design / Vídeo
+    ### image editing
     gimp
 
-    ### 🌐 Internet / Downloads
+    ### internet / downloads
     qbittorrent
 
-    ### 🖥️ Outros
+    ### others
     pywal16
     appimage-run
     anydesk
     syncthing
 
 
-    #Themes
+    #themes
     adapta-gtk-theme
     fluent-gtk-theme
   ];
