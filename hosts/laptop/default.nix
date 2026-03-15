@@ -50,6 +50,8 @@ services.logind.settings.Login = {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
   hardware.bluetooth.enable = true;
+  security.pam.services.gtklock = {};
+  security.pam.services.hyprlock = {};
   security.pam.services.swaylock = {};
     ############################################
   # Wayland portal configuration for Sway
@@ -107,9 +109,6 @@ services.logind.settings.Login = {
   users.users.lucas.extraGroups = [ "input" ];
 
   environment.systemPackages = with pkgs; [
-    gtklock
-    gtklock-userinfo-module
-    gtklock-powerbar-module
     ppsspp-sdl-wayland
     libinput-gestures
     swayfx

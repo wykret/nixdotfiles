@@ -35,10 +35,6 @@
 
 };
 
-  home.file.".config/gtklock" = {
-    source = ../config/gtklock;
-  };
-
   home.file.".config/sway" = {
     source = ../config/sway;
   };
