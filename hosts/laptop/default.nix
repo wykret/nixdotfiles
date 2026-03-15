@@ -80,13 +80,13 @@ services.logind.settings.Login = {
 
     plymouth = {
       enable = true;
-      theme = "rings";
-      themePackages = with pkgs; [
-        # By default we would install all themes
-        (adi1090x-plymouth-themes.override {
-          selected_themes = [ "rings" ];
-        })
-      ];
+      theme = "breeze";
+   #   themePackages = with pkgs; [
+   #     # By default we would install all themes
+   #     (adi1090x-plymouth-themes.override {
+   #       selected_themes = [ "rings" ];
+   #     })
+   #   ];
     };
     # Enable "Silent boot"
     consoleLogLevel = 3;
@@ -107,6 +107,9 @@ services.logind.settings.Login = {
   users.users.lucas.extraGroups = [ "input" ];
 
   environment.systemPackages = with pkgs; [
+    gtklock
+    gtklock-userinfo-module
+    gtklock-powerbar-module
     ppsspp-sdl-wayland
     libinput-gestures
     swayfx
