@@ -18,7 +18,7 @@ input type:keyboard {
 exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Wallpaper (substitui feh)
-exec_always swaybg -i ~/.dotfiles/wallpapers/14.jpg -m fill
+exec_always swaybg -i ~/.dotfiles/wallpapers/19.jpg -m fill
 exec_always --no-startup-id udiskie
 
 # Picom REMOVIDO (Sway já é compositor)
@@ -28,8 +28,8 @@ exec_always swaync
 
 exec ~/.config/scripts/autostart.sh
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    on-lid 'swaylock -f -c 000000'
+    timeout 300 'hyprlock' \
+    on-lid 'hyprlock'
 
 set $mod Mod4
 
@@ -56,10 +56,10 @@ exec dex --autostart --environment sway
 
 # Substitui xss-lock + i3lock
 exec swayidle -w \
- timeout 600 'swaylock -f -c 000000' \
+ timeout 600 'hyprlock' \
  timeout 900 'swaymsg "output * dpms off"' \
  resume 'swaymsg "output * dpms on"' \
- before-sleep 'swaylock -f -c 000000'
+ before-sleep 'hyprlock'
 
 exec nm-applet
 
@@ -83,7 +83,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+b exec firefox
 
 # Lock adaptado
-bindsym $mod+u exec swaylock -c 000000
+bindsym $mod+u exec hyprlock
 
 bindsym $mod+q kill
 

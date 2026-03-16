@@ -109,6 +109,7 @@ services.logind.settings.Login = {
   users.users.lucas.extraGroups = [ "input" ];
 
   environment.systemPackages = with pkgs; [
+    hyprlock
     ppsspp-sdl-wayland
     libinput-gestures
     swayfx
