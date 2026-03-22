@@ -2,12 +2,6 @@
 
 {
   imports = [];
-    i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      mozc
-    ];
-  };
 
   #################### BOOT ####################
 
@@ -152,6 +146,7 @@
     fastfetch
 
     ### files/compression
+    zathura
     unzip
     persepolis
     unrar
@@ -235,6 +230,7 @@
     spotify
 
     ### games / wine / launchers
+    vulkan-tools
     pcsx2
     mangohud
     gamemode
