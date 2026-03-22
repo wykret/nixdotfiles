@@ -90,6 +90,7 @@ services.logind.settings.Login = {
    #     })
    #   ];
     };
+
     # Enable "Silent boot"
     consoleLogLevel = 3;
     initrd.verbose = false;
@@ -104,6 +105,10 @@ services.logind.settings.Login = {
     loader.timeout = 0;
   };
 
+    hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+};
   networking.hostName = "lucas-laptop";
 
   users.users.lucas.extraGroups = [ "input" ];
