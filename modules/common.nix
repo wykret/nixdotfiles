@@ -224,6 +224,7 @@
     sxiv
     ffmpeg
     mpv
+    vlc
     easyeffects
     audacity
     ardour

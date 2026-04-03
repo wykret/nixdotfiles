@@ -38,6 +38,10 @@
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
+    home.file.".config/mpv" = {
+      source = ../config/mpv;
+    };
+
     home.file.".config/dunst" = {
       source = ../config/dunst;
     };
