@@ -17,6 +17,7 @@
 
   networking.firewall = {
     enable = true;
+    allowedTCPPorts = [ 8096 ];
     allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
     allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
   };
@@ -220,6 +221,10 @@
     pavucontrol
 
     ### audio / video / multimedia
+    tailscale
+    jellyfin
+    jellyfin-web
+    jellyfin-ffmpeg
     pulseaudio
     sxiv
     ffmpeg
@@ -291,6 +296,13 @@
     openDefaultPorts = true;
   };
 
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+  services.tailscale = {
+    enable = true;
+  };
   services.gnome.gnome-keyring.enable = true;
 
   #################### FONTS ####################
