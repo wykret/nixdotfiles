@@ -234,6 +234,7 @@
     audacity
     ardour
     spotify
+    spicetify-cli
 
     ### games / wine / launchers
     vulkan-tools
