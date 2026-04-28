@@ -1,0 +1,6 @@
+[16:02:04 2026-04-12] FETCHING Version 2.43.1
+[16:02:04 2026-04-12] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.43.1/spicetify-2.43.1-linux-amd64.tar.gz
+[16:02:06 2026-04-12] EXTRACTING /home/lucas/.spicetify/spicetify.tar.gz
+[16:02:06 2026-04-12] SETTING EXECUTABLE PERMISSIONS TO /home/lucas/.spicetify/spicetify
+[16:02:06 2026-04-12] REMOVING /home/lucas/.spicetify/spicetify.tar.gz
+[16:02:06 2026-04-12] APPENDING /home/lucas/.spicetify to PATH in /home/lucas/.zshrc

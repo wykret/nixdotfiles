@@ -15,12 +15,22 @@
     "pool.ntp.org"
   ];
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 8096 ];
-    allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-    allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
-  };
+networking.firewall = {
+  enable = true;
+
+  allowedTCPPorts = [ 
+    8096
+    49553
+  ];
+
+  allowedTCPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
+
+  allowedUDPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
+};
   networking.resolvconf.enable = false;
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
@@ -156,6 +166,7 @@
     ntfs3g
 
     ### dev
+    python3
     gcc
     cmake
     git
@@ -221,6 +232,7 @@
     pavucontrol
 
     ### audio / video / multimedia
+    nicotine-plus
     tailscale
     jellyfin
     jellyfin-web
