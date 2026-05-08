@@ -1,0 +1,44 @@
+@import url("/home/lucas/.cache/wal/colors-waybar.css");
+
+* {
+    font-family: "JetBrains Mono";
+    font-size: 10px;
+    font-weight: 600;
+    color: @foreground;
+}
+
+.module {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+window#waybar {
+    background-color: @background;
+    border: 2px solid @color4;
+    padding-left: 6px;
+}
+
+#battery.warning {
+    border: 2px solid @color3;
+}
+
+#battery.critical {
+    border: 2px solid @color1;
+}
+
+#network.ethernet {
+    background-color: @color4;
+}
+
+#workspaces {
+    border: 2px solid @color4;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#workspaces button {
+    border-radius: 0;
+    color: @foreground;
+    padding-left: 8px;
+    padding-right: 7px;
+}

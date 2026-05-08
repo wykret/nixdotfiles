@@ -7,38 +7,76 @@
     color: @foreground;
 }
 
-.module {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
+/* Transparent main bar */
 window#waybar {
-    background-color: @background;
-    border: 2px solid @color4;
-    padding-left: 6px;
+    background: transparent;
 }
 
-#battery.warning {
-    border: 2px solid @color3;
+/* Shared module style */
+.module {
+    margin: 6px 4px;
+    padding: 5px 12px;
+
+    /* Glassmorphism background */
+    background-color: alpha(@background, 0.45);
+
+    /* Rounded corners */
+    border-radius: 999px;
+
+    /* Soft border */
+    border: 1px solid alpha(@foreground, 0.15);
+
+    /* Optional subtle shadow */
+    box-shadow: 0 0 8px alpha(#000000, 0.25);
 }
 
-#battery.critical {
-    border: 2px solid @color1;
-}
-
-#network.ethernet {
-    background-color: @color4;
-}
-
+/* Workspace container */
 #workspaces {
-    border: 2px solid @color4;
-    padding-left: 0;
-    padding-right: 0;
+    margin: 6px 4px;
+    padding: 2px;
+
+    background-color: alpha(@background, 0.45);
+
+    border-radius: 999px;
+    border: 1px solid alpha(@foreground, 0.15);
+
+    box-shadow: 0 0 8px alpha(#000000, 0.25);
 }
 
+/* Workspace buttons */
 #workspaces button {
-    border-radius: 0;
+    border-radius: 999px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    margin: 2px;
+
     color: @foreground;
-    padding-left: 8px;
-    padding-right: 7px;
+    background: transparent;
+}
+
+/* Active workspace */
+#workspaces button.active {
+    background-color: alpha(@color4, 0.7);
+}
+
+/* Hover effect */
+#workspaces button:hover {
+    background-color: alpha(@foreground, 0.12);
+}
+
+/* Battery warning */
+#battery.warning {
+    border: 1px solid alpha(@color3, 0.6);
+}
+
+/* Critical battery */
+#battery.critical {
+    border: 1px solid alpha(@color1, 0.7);
+}
+
+/* Ethernet connected */
+#network.ethernet {
+    background-color: alpha(@color4, 0.55);
 }
