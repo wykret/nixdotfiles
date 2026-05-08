@@ -308,6 +308,8 @@ networking.firewall = {
 
     ### image editing
     gimp
+    waifu2x-converter-cpp
+
 
     ### internet / downloads
     qbittorrent
