@@ -14,7 +14,9 @@
     "time.google.com"
     "pool.ntp.org"
   ];
-
+nixpkgs.config.permittedInsecurePackages = [
+  "olm-3.2.16"
+];
 networking.firewall = {
   enable = true;
 
@@ -34,6 +36,18 @@ networking.firewall = {
   networking.resolvconf.enable = false;
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
+  services.mpd = {
+  enable = true;
+  user = "lucas";
+  musicDirectory = "/home/lucas/Musicas/";
+  extraConfig = ''
+   audio_output {
+    type "pipewire"
+    name "My PipeWire Output"
+  }
+  '';
+
+};
   #################### TIME / LOCALE ####################
   time.timeZone = "America/Sao_Paulo";
 
@@ -232,6 +246,10 @@ networking.firewall = {
     pavucontrol
 
     ### audio / video / multimedia
+    mpdscribble
+    ncmpcpp
+    mpd
+    mpc
     nicotine-plus
     tailscale
     jellyfin
@@ -244,7 +262,9 @@ networking.firewall = {
     vlc
     easyeffects
     audacity
+    reaper
     ardour
+    strawberry
     spotify
     spicetify-cli
 
@@ -270,8 +290,9 @@ networking.firewall = {
     uxplay
 
     ### social
-    #discord
-    #vesktop
+    nheko
+    gomuks
+    element-desktop
     arrpc
     #telegram-desktop
     ferdium
