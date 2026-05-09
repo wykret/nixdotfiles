@@ -7,10 +7,6 @@
     latitude = 49.0;
     longitude = 8.4;
   };
-  programs.swayr = {
-    enable = true;
-  };
-
   home.packages = with pkgs; [
     blueman
     waybar

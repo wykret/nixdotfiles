@@ -77,7 +77,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +1%
 bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
 
 floating_modifier $mod
-bindsym Mod1+Tab exec swayr switch-window
+bindsym Mod1+Tab exec rofi -show window icons -show-icons
 bindsym $mod+n exec swaync-client --toggle-panel
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+b exec firefox
