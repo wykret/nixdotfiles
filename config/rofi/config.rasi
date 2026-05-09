@@ -3,8 +3,8 @@
 * {
     font: "JetBrains Mono 11";
 
-    background:     rgba(20, 20, 20, 0.72);
-    background-alt: rgba(30, 30, 30, 0.45);
+    background:     rgba(20, 20, 20, 0.30);
+    background-alt: rgba(30, 30, 30, 0.05);
 
     foreground: @foreground;
     selected:   @color4;
@@ -70,7 +70,7 @@ element selected {
 }
 
 element-text {
-    text-color: @foreground;
+    text-color: #ffffff;
 }
 
 element-icon {
