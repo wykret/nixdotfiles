@@ -34,6 +34,9 @@
 
 };
 
+  home.file.".config/rofi" = {
+    source = ../config/rofi;
+  };
   home.file.".config/sway" = {
     source = ../config/sway;
   };

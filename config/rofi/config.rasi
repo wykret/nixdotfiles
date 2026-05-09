@@ -1,0 +1,78 @@
+@import "~/.cache/wal/colors-rofi-dark"
+
+* {
+    font: "JetBrains Mono 11";
+
+    background:     rgba(20, 20, 20, 0.72);
+    background-alt: rgba(30, 30, 30, 0.45);
+
+    foreground: @foreground;
+    selected:   @color4;
+    active:     @color2;
+    urgent:     @color1;
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+
+    width: 42%;
+    border-radius: 18px;
+
+    background-color: @background;
+    border: 2px;
+    border-color: @color4;
+
+    padding: 18px;
+}
+
+mainbox {
+    spacing: 14px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @background-alt;
+
+    border-radius: 14px;
+
+    padding: 12px;
+    spacing: 10px;
+}
+
+prompt {
+    text-color: @color4;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: rgba(255,255,255,0.35);
+}
+
+listview {
+    lines: 8;
+    spacing: 8;
+    scrollbar: false;
+}
+
+element {
+    padding: 12px;
+    border-radius: 14px;
+
+    background-color: transparent;
+}
+
+element selected {
+    background-color: rgba(255,255,255,0.08);
+    border: 1px;
+    border-color: @selected;
+}
+
+element-text {
+    text-color: @foreground;
+}
+
+element-icon {
+    size: 28px;
+}
