@@ -171,6 +171,8 @@ networking.firewall = {
     fastfetch
 
     ### files/compression
+    poppler-utils
+    ghostscript
     zathura
     unzip
     persepolis
