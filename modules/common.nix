@@ -296,7 +296,7 @@ networking.firewall = {
     gomuks
     element-desktop
     arrpc
-    #telegram-desktop
+    telegram-desktop
     ferdium
     revolt-desktop
 

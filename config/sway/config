@@ -37,7 +37,7 @@ font pango:monospace 8
 
 for_window [app_id=".*"] border pixel 2
 default_border pixel 1
-hide_edge_borders smart
+#hide_edge_borders smart
 
 
 # class/app_id adaptado para sway
@@ -45,14 +45,14 @@ client.focused  #2f4f3f #1f3a2e #e6f2ec #6ecf8b #1f3a2e
 client.unfocused        #333333 #222222 #888888 #292929   #222222
 
 gaps inner 5
-smart_gaps on
-#blur_passes 4
-#blur_radius 4
+#smart_gaps on
+blur_passes 4
+blur_radius 4
 corner_radius 5
 default_dim_inactive 0.3
 blur enable
-blur_radius 10
-blur_passes 3
+for_window [app_id="kitty"] blur disable
+layer_effects "*" blur enable
 blur_noise 0.02
 blur_brightness 1.0
 blur_contrast 1.0
