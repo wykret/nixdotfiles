@@ -162,6 +162,7 @@ networking.firewall = {
 
     ###browsers
     mullvad-browser
+    chromium
 
     ### 🖥️ system
     lm_sensors

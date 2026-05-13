@@ -50,9 +50,22 @@
     },
 
     "clock": {
-        "interval": 5,
-        "format": "󰥔 {:%H:%M 󰃭 %a %Y-%m-%d}"
-    },
+    "interval": 5,
+    "format": "󰥔 {:%H:%M 󰃭 %a %d/%m}",
+    "tooltip-format": "<span size='9pt'><b>{:%B %Y}</b></span>\n<tt>{calendar}</tt>",
+    "calendar": {
+        "mode": "month",
+        "mode-mon-col": 3,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+        "format": {
+            "months": "<span color='#cba6f7'><b>{}</b></span>",
+            "days": "<span color='#cdd6f4'>{}</span>",
+            "weeks": "<span color='#89b4fa'><b>W{}</b></span>",
+            "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+            "today": "<span background='#89b4fa' foreground='#11111b'><b>{}</b></span>"
+        }
+}},
 
     "pulseaudio": {
         "format-icons": ["󰖀", "󰕾"],
