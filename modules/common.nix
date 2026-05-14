@@ -311,6 +311,7 @@ networking.firewall = {
 
     ### image editing
     gimp
+    kdePackages.kolourpaint
     waifu2x-converter-cpp
 
 
