@@ -17,14 +17,6 @@
 nixpkgs.config.permittedInsecurePackages = [
   "olm-3.2.16"
 ];
-xdg.mimeApps = {
-  enable = true;
-  defaultApplications = {
-    "text/html" = "firefox.desktop";
-    "application/pdf" = "org.gnome.Evince.desktop";
-    "image/png" = "feh.desktop";
-  };
-};
 networking.firewall = {
   enable = true;
 
