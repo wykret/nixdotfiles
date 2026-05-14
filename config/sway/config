@@ -51,7 +51,7 @@ blur_radius 4
 corner_radius 5
 default_dim_inactive 0.3
 blur enable
-for_window [app_id="kitty"] blur disable
+#for_window [app_id="kitty"] blur disable
 layer_effects "*" blur enable
 blur_noise 0.02
 blur_brightness 1.0
