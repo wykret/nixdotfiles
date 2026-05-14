@@ -15,6 +15,14 @@
   # want to update the value, then make sure to first check the Home Manager release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
   # The home.packages option allows you to install Nix packages into your
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+      "image/png" = "sxiv.desktop";
+    };
+  };
 
   home.packages = [
     # # "Hello, world!" when run.
