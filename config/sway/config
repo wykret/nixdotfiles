@@ -25,6 +25,8 @@ exec_always swaybg -o eDP-1 -i ~/.dotfiles/wallpapers/27-upscale.png -m tile & s
 
 # Dunst pode funcionar via XWayland, mas mantive:
 exec_always swaync
+exec_always arrpc
+exec_always mprisence
 
 exec ~/.config/scripts/autostart.sh
 exec swayidle -w \
