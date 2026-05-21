@@ -104,11 +104,14 @@ services.logind.settings.Login = {
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
   };
-
-    hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-};
+  hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-compute-runtime
+      ];
+    };
   networking.hostName = "lucas-laptop";
 
   users.users.lucas.extraGroups = [ "input" ];
@@ -121,5 +124,6 @@ services.logind.settings.Login = {
     swayidle
     waypaper
     nautilus
+    kdePackages.kdenlive
   ];
 }

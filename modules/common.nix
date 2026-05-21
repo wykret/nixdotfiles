@@ -271,6 +271,10 @@ networking.firewall = {
     spotify
     spicetify-cli
 
+    #mpris
+    mprisence
+    waybar-mpris
+
     ### games / wine / launchers
     vulkan-tools
     pcsx2
@@ -299,6 +303,7 @@ networking.firewall = {
     arrpc
     telegram-desktop
     ferdium
+    vesktop
     revolt-desktop
 
     ### productivity/notes
