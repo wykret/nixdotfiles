@@ -8,9 +8,11 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    iloader.url = "github:nab138/iloader";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, iloader, ... }@inputs:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
@@ -34,6 +36,10 @@
                 ./home/common.nix
                 ./home/desktop.nix
               ];
+
+              home.packages = [
+                iloader.packages.${system}.default
+              ];
             };
           }
         ];
@@ -55,6 +61,10 @@
                 ./home/common.nix
                 ./home/laptop.nix
               ];
+
+              home.packages = [
+                iloader.packages.${system}.default
+              ];
             };
           }
         ];
@@ -63,4 +73,3 @@
     };
   };
 }
-
