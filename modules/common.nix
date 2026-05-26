@@ -249,6 +249,7 @@ networking.firewall = {
     pavucontrol
 
     ### audio / video / multimedia
+    yt-dlp
     mpdscribble
     ncmpcpp
     mpd
@@ -266,6 +267,7 @@ networking.firewall = {
     easyeffects
     audacity
     reaper
+    guitarix
     ardour
     strawberry
     spotify

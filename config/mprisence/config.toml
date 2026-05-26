@@ -1,6 +1,6 @@
-interval = 200
 event_driven = true
-discovery_interval = 500
+#interval = 10
+#discovery_interval = 10
 allowed_players = []
 
 [template]
