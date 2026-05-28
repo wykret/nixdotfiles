@@ -92,17 +92,17 @@ services.logind.settings.Login = {
     };
 
     # Enable "Silent boot"
-    consoleLogLevel = 3;
-    initrd.verbose = false;
-    kernelParams = [
-      "quiet"
-      "udev.log_level=3"
-      "systemd.show_status=auto"
-    ];
+    #consoleLogLevel = 3;
+    #initrd.verbose = false;
+    #kernelParams = [
+    #  "quiet"
+    #  "udev.log_level=3"
+    #  "systemd.show_status=auto"
+    #];
     # Hide the OS choice for bootloaders.
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
-    loader.timeout = 0;
+    loader.timeout = 5;
   };
   hardware.graphics = {
       enable = true;
