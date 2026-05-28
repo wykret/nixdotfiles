@@ -18,7 +18,7 @@ input type:keyboard {
 exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Kill previous instances (important when reloading config)
-exec_always swaybg -o eDP-1 -i ~/.dotfiles/wallpapers/27-upscale.png -m tile & swaybg -o HDMI-A-2 -i ~/.dotfiles/wallpapers/27-upscale-upscale.png -m fill &
+exec_always swaybg -o eDP-1 -i ~/.dotfiles/wallpapers/29.jpg -m tile & swaybg -o HDMI-A-2 -i ~/.dotfiles/wallpapers/29.jpg -m fill &
 
 
 # Picom REMOVIDO (Sway já é compositor)

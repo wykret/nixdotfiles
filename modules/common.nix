@@ -181,6 +181,7 @@ networking.firewall = {
     p7zip
     file
     ntfs3g
+    usbmuxd
 
     ### dev
     python3
