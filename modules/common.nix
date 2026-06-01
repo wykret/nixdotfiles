@@ -271,6 +271,7 @@ networking.firewall = {
     guitarix
     ardour
     strawberry
+    cider
     spotify
     spicetify-cli
 
