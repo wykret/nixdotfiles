@@ -11,6 +11,7 @@
     "notification-body-image-width": 200,
     "timeout": 5,
     "timeout-low": 10,
+    "cssPriority": "user",
     "timeout-critical": 10,
     "fit-to-screen": false,
     "control-center-width": 370,

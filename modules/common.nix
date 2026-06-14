@@ -17,6 +17,11 @@
 nixpkgs.config.permittedInsecurePackages = [
   "olm-3.2.16"
 ];
+
+  nixpkgs.config.problems.handlers = {
+    cider.broken = "warn";
+  };
+
 networking.firewall = {
   enable = true;
 
@@ -39,17 +44,10 @@ networking.firewall = {
   services.mpd = {
   enable = true;
   user = "lucas";
-  musicDirectory = "/home/lucas/Musicas/";
-  extraConfig = ''
-   audio_output {
-    type "pipewire"
-    name "My PipeWire Output"
-  }
-  '';
-
-};
+  musicDirectory = "/home/lucas/Musicas/";};
   #################### TIME / LOCALE ####################
   time.timeZone = "America/Sao_Paulo";
+
 
   i18n.defaultLocale = "pt_BR.UTF-8";
   i18n.extraLocaleSettings = {
@@ -153,12 +151,15 @@ networking.firewall = {
 
   programs.steam = {
     enable = true;
+    protontricks.enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
 
   #################### PACKAGES ####################
   environment.systemPackages = with pkgs; [
+    ###VPN
+    proton-vpn
 
     ###browsers
     mullvad-browser
@@ -271,7 +272,7 @@ networking.firewall = {
     guitarix
     ardour
     strawberry
-    cider
+    cider-2
     spotify
     spicetify-cli
 
@@ -381,14 +382,14 @@ networking.firewall = {
   services.usbmuxd.enable = true;
 
   #################### VPN ####################
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  #services.mullvad-vpn.enable = true;
+  #services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
   #################### NIX ####################
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }
 

@@ -19,7 +19,7 @@ exec_always systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CUR
 exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 # Kill previous instances (important when reloading config)
 #exec_always swaybg -o eDP-1 -i ~/.dotfiles/wallpapers/29.jpg -m tile & swaybg -o HDMI-A-2 -i ~/.dotfiles/wallpapers/29.jpg -m fill &
-exec_always swaybg -i ~/wallpapers/29.jpg
+exec_always swaybg -i ~/wallpapers/33.jpg
 
 
 # Picom REMOVIDO (Sway já é compositor)
@@ -41,6 +41,9 @@ font pango:monospace 8
 for_window [app_id=".*"] border pixel 2
 default_border pixel 1
 #hide_edge_borders smart
+
+layer_effects "swaync-control-center" blur enable; blur_radius 10; blur_passes 3
+layer_effects "swaync-notification-window" blur enable; blur_radius 10; blur_passes 3
 
 
 # class/app_id adaptado para sway
